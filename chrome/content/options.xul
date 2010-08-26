@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://foxrunner/locale/foxrunner.dtd">
+
+<prefwindow id="foxrunner-prefs" title="&FoxRunnerPreferences;" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://foxrunner/content/scripts/functions-options.js"/>
+    
+    <stringbundleset id="strbundles">
+	<stringbundle id="foxrunnerstrings" src="chrome://foxrunner/locale/strings.properties"/>
+    </stringbundleset>
+
+    <prefpane id="foxrunner-pref-pane" flex="1">
+	<preferences>
+	    <preference id="pref_termcom" name="extensions.foxrunner.termcom" type="string"/>
+	    <preference id="pref_blacklist" name="extensions.foxrunner.blacklist" type="bool"/>
+	    <preference id="pref_whitelist" name="extensions.foxrunner.whitelist" type="bool"/>
+	    <preference id="pref_confirmweb" name="extensions.foxrunner.confirmweb" type="bool"/>
+	    <preference id="pref_confirmlocal" name="extensions.foxrunner.confirmlocal" type="bool"/>
+	    <preference id="pref_style" name="extensions.foxrunner.style" type="string" instantApply="true"/>
+	    <preference id="pref_sidebarwidth" name="extensions.foxrunner.sidebarwidth" type="string"/>
+	    <preference id="pref_savehistory" name="extensions.foxrunner.savehistory" type="bool"/>
+	    <preference id="pref_clearhistory" name="extensions.foxrunner.clearhistory" type="bool"/>
+	    <preference id="pref_keepterminal" name="extensions.foxrunner.keepterminal" type="bool"/>
+	    <preference id="pref_killsudo" name="extensions.foxrunner.killsudo" type="bool"/>
+	    <preference id="pref_hidestatusbar" name="extensions.foxrunner.hidestatusbar" type="bool" instantApply="true"/>
+	</preferences>
+
+	<hbox>
+	    <spacer width="10" flex="0"/>
+	    <vbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <label value="&Terminal;: " /> 
+		    <textbox preference="pref_termcom" id="termcom" size="30"/>
+		    <vbox>
+			<image src="images/search_medium.png" tooltiptext="&SelectFile;" onclick="foxrunnerOptions.openFile('&SelectFile;','termcom');"/>
+		    </vbox>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&BlacklistOn;" preference="pref_blacklist" id="blacklist" size="1"/>
+		    <spacer width="5" flex="0"/>
+		    <vbox>
+			<image width="20" height="20" src="images/info_medium.png" tooltiptext="&InfoBlacklist;"/>
+		    </vbox>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&WhitelistOn;" preference="pref_whitelist" id="whitelist" size="1"/>
+		    <spacer width="5" flex="0"/>
+		    <vbox>
+			<image width="20" height="20" src="images/info_medium.png" tooltiptext="&InfoWhitelist;"/>
+		    </vbox>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&Confirmweb;" preference="pref_confirmweb" id="confirmweb" size="1"/>
+		    <spacer width="5" flex="0"/>
+		    <vbox>
+			<image width="20" height="20" src="images/info_medium.png" tooltiptext="&InfoConfirmWeb;"/>
+		    </vbox>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&Confirmlocal;" preference="pref_confirmlocal" id="confirmlocal" size="1"/>
+		    <spacer width="5" flex="0"/>
+		    <vbox>
+			<image width="20" height="20" src="images/info_medium.png" tooltiptext="&InfoConfirmLocal;"/>
+		    </vbox>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&KillSudo;" preference="pref_killsudo" id="killsudo" size="1"/>
+		    <spacer width="5" flex="0"/>
+		    <vbox>
+			<image width="20" height="20" src="images/info_medium.png" tooltiptext="&InfoKillSudo;"/>
+		    </vbox>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&SaveHistory;" preference="pref_savehistory" id="savehistory" size="1"/>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&ClearHistory;" preference="pref_clearhistory" id="clearhistory" size="1"/>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&KeepTerminal;" preference="pref_keepterminal" id="keepterminal" size="1"/>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="20" flex="0"/>
+		<hbox>
+		    <label value="&Style;: " />
+		    <menulist preference="pref_style" id="style">
+		      <menupopup>
+			<menuitem label="&Blue;" value="blue.css" />
+			<menuitem label="&Green;" value="green.css" />
+			<menuitem label="&Yellow;" value="yellow.css" />
+			<menuitem label="&Orange;" value="orange.css" />
+			<menuitem label="&Purple;" value="purple.css" />
+			<menuitem label="&Turquoise;" value="turquoise.css" />
+			<menuitem label="&LightGrey;" value="lightgrey.css" />
+			<menuitem label="&DarkGrey;" value="darkgrey.css" />
+			<menuitem label="&Carbon;" value="carbon.css" />
+			<menuitem label="&LightBrown;" value="lightbrown.css" />
+			<menuitem label="&BlackGreen;" value="blackgreen.css" selected="true" />
+		      </menupopup>
+		    </menulist>
+		    <label value="&SidebarWidth;: "/>
+		    <textbox preference="pref_sidebarwidth" id="sidebarwidth" size="3"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+		<hbox>
+		    <spacer width="10" flex="0"/>
+		    <checkbox label="&HideStatusBar;" preference="pref_hidestatusbar" id="hidestatusbar" size="1"/>
+		    <spacer width="10" flex="1"/>
+		</hbox>
+		<spacer height="10" flex="0"/>
+	    </vbox>
+	    <spacer width="10" flex="0"/>
+	</hbox>
+    </prefpane>
+</prefwindow>

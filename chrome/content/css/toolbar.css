@@ -1,0 +1,20 @@
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+#foxrunnerstatusimage{
+    list-style-image: url("chrome://foxrunner/content/images/add_small.png");
+}
+
+#foxrunnerbutton-1,
+#wrapper-foxrunnerbutton-1
+    {list-style-image: url("chrome://foxrunner/content/images/toolbarbutton.png");}
+
+#foxrunnerhideimage,
+#wrapper-foxrunnerhideimage
+    {list-style-image: url("chrome://foxrunner/content/images/hide_small.png");}
+
+
+/* common style for all custom buttons */
+.foxrunnerbutton
+    {-moz-image-region: rect( 0px 24px 24px  0px);}
+
+[iconsize="small"] .foxrunnerbutton
+    {-moz-image-region: rect( 0px 40px 16px 24px);}

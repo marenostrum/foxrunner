@@ -1,0 +1,13 @@
+pref("extensions.foxrunner.termcom", "/usr/bin/x-terminal-emulator");
+pref("extensions.foxrunner.agreement", "no");
+pref("extensions.foxrunner.blacklist", true);
+pref("extensions.foxrunner.whitelist", true);
+pref("extensions.foxrunner.confirmweb", true);
+pref("extensions.foxrunner.confirmlocal", true);
+pref("extensions.foxrunner.style", "blackgreen.css");
+pref("extensions.foxrunner.sidebarwidth", "350");
+pref("extensions.foxrunner.savehistory", true);
+pref("extensions.foxrunner.clearhistory", true);
+pref("extensions.foxrunner.keepterminal", true);
+pref("extensions.foxrunner.hidestatusbar", false);
+pref("extensions.foxrunner.killsudo", true);

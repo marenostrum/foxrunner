@@ -1,0 +1,80 @@
+<!ENTITY Add "Adicionar">
+<!ENTITY Address "URL">
+<!ENTITY AddBlacklistedKeyword "Adicionar Palavra Bloqueada">
+<!ENTITY AddCommand "Adicionar Comando">
+<!ENTITY AddWhitelistedAddress "Adicionar Domínio Autorizado">
+<!ENTITY AddScript "Adicionar Script">
+<!ENTITY AddSelectedTextAsCommand "Salvar texto como comando">
+<!ENTITY AddSelectedTextAsScript "Salvar texto como script">
+<!ENTITY AddSelectedTextAsVariable "Salvar texto como variável">
+<!ENTITY AddSiteWhitelist "Permitir este site">
+<!ENTITY AddVariable "Adicionar Variável">
+<!ENTITY Agreement "Você deve ser muito cauteloso ao executar comandos de fontes que você não confia e deve compreender perfeitamente a função de cada comando. Executar comandos sem compreendê-los, mesmo que sejam de fontes confiáveis, pode acarretar perda de dados, corrupção do sistema e falhas de segurança.">
+<!ENTITY AgreementOn "Digite YES se compreende os riscos e concorda:">
+<!ENTITY BlacklistedKeywords "Palavras Bloqueadas">
+<!ENTITY BlacklistOn "Bloquear comandos perigosos">
+<!ENTITY Clear "Apagar Tudo">
+<!ENTITY ClearHistory "Limpar histórico de comandos ao sair">
+<!ENTITY Code "Código">
+<!ENTITY Confirmweb "Requisitar confirmação ao executar comandos de sites">
+<!ENTITY Confirmlocal "Requisitar confirmação ao executar comandos localmente">
+<!ENTITY Command "Comando">
+<!ENTITY Commands "Comandos">
+<!ENTITY CommandSave "Salvar Comando">
+<!ENTITY CommandHistory "Histórico">
+<!ENTITY Delete "Apagar">
+<!ENTITY Edit "Editar">
+<!ENTITY Export "Exportar">
+<!ENTITY FileName "Nome do arquivo">
+<!ENTITY FoxRunnerPreferences "Preferências FoxRunner">
+<!ENTITY FoxRunnerTitle "FoxRunner">
+<!ENTITY FoxRunnerAgreement "Alerta FoxRunner">
+<!ENTITY Hide "Esconder">
+<!ENTITY HideStatusBar "Esconder barra de comando da barra de status">
+<!ENTITY Import "Importar">
+<!ENTITY KeepTerminal "Manter terminal aberto após execução de comandos">
+<!ENTITY Keyword "Palavra-chave">
+<!ENTITY KillSudo "Revocar permissões root após rodar comandos sudo">
+<!ENTITY MultipleVariables "Múltiplas variáveis">
+<!ENTITY No "Não">
+<!ENTITY NoVariable "Sem variáveis">
+<!ENTITY Permissions "Permissões">
+<!ENTITY Preferences "Preferências">
+<!ENTITY Preview "Previsão">
+<!ENTITY Run "Executar">
+<!ENTITY RunCustom "Executar">
+<!ENTITY RunInTerminal "Executar em terminal">
+<!ENTITY RunSelectedText "Executar comando selecionado">
+<!ENTITY SaveHistory "Salvar histórico de comandos">
+<!ENTITY ScriptOptions "Opões do Script">
+<!ENTITY Scripts "Scripts">
+<!ENTITY SelectFile "Selecionar Arquivo">
+<!ENTITY SelectVariables "Variáveis">
+<!ENTITY SendSelectedtoScript "Enviar texto para script">
+<!ENTITY Sidebar "Barra Lateral">
+<!ENTITY SidebarWidth "Largura da Barra">
+<!ENTITY SingleVariable "Variável única">
+<!ENTITY Style "Estilo">
+<!ENTITY Terminal "Console">
+<!ENTITY UseVariables "Usar variáveis">
+<!ENTITY Variable "Variável">
+<!ENTITY Variables "Variáveis">
+<!ENTITY WhitelistedDomains "Domínios Autorizados">
+<!ENTITY WhitelistOn "Permitir apenas web sites confiáveis">
+<!ENTITY Yes "Sim">
+<!ENTITY Blue "Azul">
+<!ENTITY Green "Verde">
+<!ENTITY Yellow "Amarelo">
+<!ENTITY Orange "Laranja">
+<!ENTITY Purple "Roxo">
+<!ENTITY Turquoise "Turquesa">
+<!ENTITY LightGrey "Cinza Claro">
+<!ENTITY DarkGrey "Cinza Escuro">
+<!ENTITY LightBrown "Marrom Claro">
+<!ENTITY BlackGreen "Preto e Verde">
+<!ENTITY Carbon "Carbono">
+<!ENTITY InfoWhitelist "Se você selecionar esta opção, então sempre que selecionar um texto de web site e tentar executá-lo como comando, enviá-lo para um script como variável ou salvá-lo no banco de dados, a ação será bloqueada até que adicione o endereço do site à lista de permissões. Não selecionar esta opção irá permitir executar ações com textos selecionados à partir de qualquer web site.">
+<!ENTITY InfoBlacklist "Se você selecionar esta opção, então sempre que tentar executar um comando, enviar uma variável para um script ou adicionar entradas ao banco de dados, a ação será bloqueada se a entrada selecionada for semelhante a qualquer palavra-chave da lista de comandos bloqueados. Não selecionar esta opção irá permitir a execução de qualquer comando ou ação.">
+<!ENTITY InfoConfirmWeb "Se você selecionar esta opção, então será requerido confirmar a ação sempre que selecionar um texto de um web site e tentar executá-lo como comando, enviá-lo à um script ou salvá-lo no banco de dados. Não selecionar esta opção irá permitir a execução de qualquer ação imediatamente, caso a mesma não seja bloqueada por outras preferências, e todos os comandos serão executados em um terminal.">
+<!ENTITY InfoConfirmLocal "Se você selecionar esta opção, então será requerido confirmar a ação sempre que tentar executar um comando salvo, enviar uma variável do banco de dados para um script ou adicionar novas entradas ao banco de dados. Não selecionar esta opção irá permitir a execução de qualquer ação imediatamente, caso a mesma não seja bloqueada por outras preferências, e todos os comandos serão executados em um terminal.">
+<!ENTITY InfoKillSudo "Se você selecionar esta opção, então as permissões root serão revocadas após executar commandos sudo, forçando você a digitar sua senha toda vez que executar comandos com sudo. Não selecionar esta opção irá fazer com que a extensão obedeça as permisões do seu sistema.">

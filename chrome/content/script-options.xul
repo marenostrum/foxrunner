@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://foxrunner/locale/foxrunner.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  id="scriptoptions"
+  title="&ScriptOptions;"
+  ondialogaccept="return onOK();"
+  onload="onLoad();"
+  persist="screenX screenY width height">
+
+    <script>
+	<![CDATA[
+	    function onLoad() {
+	    	document.getElementById("newscriptcontent").value = window.arguments[0].inn.newscriptcontent;
+		document.getElementById("newterminaloption").value = window.arguments[0].inn.newterminaloption;
+		document.getElementById("newvariablesoption").value = window.arguments[0].inn.newvariablesoption;
+	    }
+
+	    function onOK() {
+		window.arguments[0].out = {newscriptcontent:document.getElementById("newscriptcontent").value,
+		newterminaloption:document.getElementById("newterminaloption").value,
+		newvariablesoption:document.getElementById("newvariablesoption").value};
+		return true;
+	    }
+	]]>
+    </script>
+
+    <vbox flex="1">
+	<spacer height="10" flex="0"/>
+	<hbox>
+	    <spacer width="10" flex="0"/>
+	    <label value="&RunInTerminal;:"/>
+	    <menulist id="newterminaloption" height="27">
+		<menupopup>
+		    <menuitem label="&Yes;" value="yes" selected="true"/>
+		    <menuitem label="&No;" value="no"/>
+		</menupopup>
+	    </menulist>
+	    <spacer width="10" flex="0"/>
+	    <label value="&UseVariables;:"/>
+	    <menulist id="newvariablesoption" height="27">
+		<menupopup>
+		    <menuitem label="&NoVariable;" value="novariable" selected="true"/>
+		    <menuitem label="&SingleVariable;" value="singlevariable"/>
+		    <menuitem label="&MultipleVariables;" value="multiplevariables"/>
+		</menupopup>
+	    </menulist>
+	    <spacer width="10" flex="0"/>
+	</hbox>
+	<caption label="&Code;"/>	
+	<textbox id="newscriptcontent" multiline="true" cols="120" rows="15" wrap="off" flex="1"/>
+	<spacer height="10" flex="0"/>
+    </vbox>
+</dialog>

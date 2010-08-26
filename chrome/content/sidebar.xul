@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css" ?>
+<?xml-stylesheet href="chrome://foxrunner/content/css/sidebar-tree.css" type="text/css" ?>
+
+<!DOCTYPE window SYSTEM "chrome://foxrunner/locale/foxrunner.dtd">
+
+<window id="foxrunner-sidebar" title="&FoxRunnerTitle;" orient="vertical" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://foxrunner/content/scripts/functions-sidebar.js"/>
+
+    <stringbundleset id="strbundles">
+	<stringbundle id="foxrunnerstrings" src="chrome://foxrunner/locale/strings.properties"/>
+    </stringbundleset>
+
+    <vbox flex="1">
+	<spacer height="5" flex="0"/>
+	<hbox flex="1">
+	    <spacer width="5" flex="0"/>
+	    <tabbox flex="1">
+		<tabs>
+		    <tab label="&Commands;" image="images/run_small.png"/>
+		    <tab label="&Scripts;" image="images/script_small.png"/>
+		    <tab label="&Permissions;" image="images/allow_small.png"/>
+		</tabs>
+		<tabpanels flex="1">
+		    <tabpanel id="commandtab" flex="1">
+			<vbox flex="1">
+			    <hbox flex="0">
+				<textbox id="searchcommands" type="search" oninput="foxrunnerSidebar.searchFilter('commands');" onclick="foxrunnerSidebar.showAll('commands');" flex="1"/>
+				<spacer width="34" flex="0"/>
+			    </hbox>
+			    <hbox height="300" flex="1">
+				<tree id="commands" flex="1" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage" seltype="single" hidecolumnpicker="true">
+				    <treecols>
+					<treecol id="rowid" hidden="true" label="#" flex="0"/>
+					<treecol id="commandstring" label="&Commands;" flex="1"/>
+				    </treecols>
+				    <template>
+					<query>SELECT rowid,commandstring FROM commands WHERE visible='yes' ORDER BY commandstring</query>
+					<action>
+					    <treechildren>
+						<treeitem uri="?">
+						    <treerow>
+							<treecell label="?rowid"/>
+							<treecell label="?commandstring"/>
+						    </treerow>
+						</treeitem>
+					    </treechildren>
+					</action>
+				    </template>
+				</tree>
+				<spacer width="2" flex="0"/>
+				<vbox flex="0">
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/run_medium.png" tooltiptext="&Run;" onclick="foxrunnerSidebar.runIt('commands');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/add_medium.png" tooltiptext="&Add;" onclick="foxrunnerSidebar.addEntry('commands');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/delete_medium.png" tooltiptext="&Delete;" onclick="foxrunnerSidebar.deleteEntry('commands','single');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				</vbox>
+			    </hbox>
+			    <hbox flex="0">
+				<textbox id="searchcommandhistory" type="search" oninput="foxrunnerSidebar.searchFilter('commandhistory');" onclick="foxrunnerSidebar.showAll('commandhistory');" flex="1"/>
+				<spacer width="34" flex="0"/>
+			    </hbox>
+			    <hbox flex="1">
+				<tree id="commandhistory" flex="1" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage" seltype="single" hidecolumnpicker="true">
+				    <treecols>
+					<treecol id="rowid" hidden="true" label="#" flex="0"/>
+					<treecol id="commandstring" label="&CommandHistory;" flex="1"/>
+				    </treecols>
+				    <template>
+					<query>SELECT rowid,commandstring FROM commandhistory WHERE visible='yes' ORDER BY rowid DESC</query>
+					<action>
+					    <treechildren>
+						<treeitem uri="?">
+						    <treerow>
+							<treecell label="?rowid"/>
+							<treecell label="?commandstring"/>
+						    </treerow>
+						</treeitem>
+					    </treechildren>
+					</action>
+				    </template>
+				</tree>
+				<spacer width="2" flex="0"/>
+				<vbox flex="0">
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/run_medium.png" tooltiptext="&Run;" onclick="foxrunnerSidebar.runIt('commandhistory');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/add_medium.png" tooltiptext="&CommandSave;" onclick="foxrunnerSidebar.addEntry('commandhistory');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/delete_medium.png" tooltiptext="&Delete;" onclick="foxrunnerSidebar.deleteEntry('commandhistory','single');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/clear_medium.png" tooltiptext="&Clear;" onclick="foxrunnerSidebar.deleteEntry('commandhistory','all');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="1"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/settings_medium.png" tooltiptext="&Preferences;" onclick="window.openDialog('chrome://foxrunner/content/options.xul', 'foxrunner-prefs', 'chrome,centerscreen,alwaysRaised');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				</vbox>
+			    </hbox>
+			</vbox>
+		    </tabpanel>
+		    <tabpanel id="scripttab" flex="1">
+			<vbox flex="1">
+			    <hbox flex="0">
+				<textbox id="searchscripts" type="search" oninput="foxrunnerSidebar.searchFilter('scripts');" onclick="foxrunnerSidebar.showAll('scripts');" flex="1"/>
+				<spacer width="34" flex="0"/>
+			    </hbox>
+			    <hbox flex="1">
+				<tree id="scripts" flex="1" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage" seltype="single" hidecolumnpicker="true">
+				    <treecols>
+					<treecol id="rowid" hidden="true" label="#" flex="0"/>
+					<treecol id="scripttitle" label="&Scripts;" flex="1"/>
+				    </treecols>
+				    <template>
+					<query>SELECT rowid,scripttitle FROM scripts WHERE visible='yes' ORDER BY scripttitle</query>
+					<action>
+					    <treechildren>
+						<treeitem uri="?">
+						    <treerow>
+							<treecell label="?rowid"/>
+							<treecell label="?scripttitle"/>
+						    </treerow>
+						</treeitem>
+					    </treechildren>
+					</action>
+				    </template>
+				</tree>
+				<spacer width="2" flex="0"/>
+				<vbox flex="0">
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/script_medium.png" tooltiptext="&Run;" onclick="foxrunnerSidebar.runIt('scripts');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/import_medium.png" tooltiptext="&Import;" onclick="foxrunnerSidebar.addEntry('scriptimport');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/add_medium.png" tooltiptext="&Add;" onclick="foxrunnerSidebar.addEntry('scripts');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/export_medium.png" tooltiptext="&Export;" onclick="foxrunnerSidebar.manageScript('export');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/delete_medium.png" tooltiptext="&Delete;" onclick="foxrunnerSidebar.deleteEntry('scripts','single');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/editor_medium.png" tooltiptext="&Edit;" onclick="foxrunnerSidebar.manageScript('edit');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				</vbox>
+			    </hbox>
+			    <hbox flex="0">
+				<textbox id="searchvariables" type="search" oninput="foxrunnerSidebar.searchFilter('variables');" onclick="foxrunnerSidebar.showAll('variables');" flex="1"/>
+				<spacer width="34" flex="0"/>
+			    </hbox>
+			    <hbox flex="1">
+				<tree id="variables" flex="1" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage" seltype="single" hidecolumnpicker="true">
+				    <treecols>
+					<treecol id="rowid" hidden="true" label="#" flex="0"/>
+					<treecol id="thevariable" label="&Variables;" flex="1"/>
+				    </treecols>
+				    <template>
+					<query>SELECT rowid,thevariable FROM variables WHERE visible='yes' ORDER BY thevariable</query>
+					<action>
+					    <treechildren>
+						<treeitem uri="?">
+						    <treerow>
+							<treecell label="?rowid"/>
+							<treecell label="?thevariable"/>
+						    </treerow>
+						</treeitem>
+					    </treechildren>
+					</action>
+				    </template>
+				</tree>
+				<spacer width="2" flex="0"/>
+				<vbox flex="0">
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/add_medium.png" tooltiptext="&Add;" onclick="foxrunnerSidebar.addEntry('variables');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/delete_medium.png" tooltiptext="&Delete;" onclick="foxrunnerSidebar.deleteEntry('variables','single');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="1"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/settings_medium.png" tooltiptext="&Preferences;" onclick="window.openDialog('chrome://foxrunner/content/options.xul', 'foxrunner-prefs', 'chrome,centerscreen,alwaysRaised');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				</vbox>
+			    </hbox>
+			</vbox>
+		    </tabpanel>
+		    <tabpanel id="blackliststab" flex="1">
+			<vbox flex="1">
+			    <hbox flex="0">
+				<textbox id="searchblacklist" type="search" oninput="foxrunnerSidebar.searchFilter('blacklist');" onclick="foxrunnerSidebar.showAll('blacklist');" flex="1"/>
+				<spacer width="34" flex="0"/>
+			    </hbox>
+			    <hbox flex="1">
+				<tree id="blacklist" flex="1" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage" seltype="single" hidecolumnpicker="true">
+				    <treecols>
+					<treecol id="rowid" hidden="true" label="#" flex="0"/>
+					<treecol id="name" label="&BlacklistedKeywords;" flex="1"/>
+				    </treecols>
+				    <template>
+					<query>SELECT rowid,blacklisted FROM blacklist WHERE visible='yes' ORDER BY blacklisted</query>
+					<action>
+					    <treechildren>
+						<treeitem uri="?">
+						    <treerow>
+							<treecell label="?rowid"/>
+							<treecell label="?blacklisted"/>
+						    </treerow>
+						</treeitem>
+					    </treechildren>
+					</action>
+				    </template>
+				</tree>
+				<spacer width="2" flex="0"/>
+				<vbox flex="0">
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/add_medium.png" tooltiptext="&Add;" onclick="foxrunnerSidebar.addEntry('blacklist');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/delete_medium.png" tooltiptext="&Delete;" onclick="foxrunnerSidebar.deleteEntry('blacklist','single');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				</vbox>
+			    </hbox>
+			    <hbox flex="0">
+				<textbox id="searchwhitelist" type="search" oninput="foxrunnerSidebar.searchFilter('whitelist');" onclick="foxrunnerSidebar.showAll('whitelist');" flex="1"/>
+				<spacer width="34" flex="0"/>
+			    </hbox>
+			    <hbox flex="1">
+				<tree id="whitelist" flex="1" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage" seltype="single" hidecolumnpicker="true">
+				    <treecols>
+					<treecol id="rowid" hidden="true" label="#" flex="0"/>
+					<treecol id="whitelisted" label="&WhitelistedDomains;" flex="1"/>
+				    </treecols>
+				    <template>
+					<query>SELECT rowid,whitelisted FROM whitelist WHERE visible='yes' ORDER BY whitelisted</query>
+					<action>
+					    <treechildren>
+						<treeitem uri="?">
+						    <treerow>
+							<treecell label="?rowid"/>
+							<treecell label="?whitelisted"/>
+						    </treerow>
+						</treeitem>
+					    </treechildren>
+					</action>
+				    </template>
+				</tree>
+				<spacer width="2" flex="0"/>
+				<vbox flex="0">
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/add_medium.png" tooltiptext="&Add;" onclick="foxrunnerSidebar.addEntry('whitelist');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="0"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/delete_medium.png" tooltiptext="&Delete;" onclick="foxrunnerSidebar.deleteEntry('whitelist','single');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				    <spacer height="10" flex="1"/>
+				    <hbox flex="0">
+					<spacer width="2" flex="1"/>
+					<image src="images/settings_medium.png" tooltiptext="&Preferences;" onclick="window.openDialog('chrome://foxrunner/content/options.xul', 'foxrunner-prefs', 'chrome,centerscreen,alwaysRaised');"/>
+					<spacer width="2" flex="1"/>
+				    </hbox>
+				</vbox>
+			    </hbox>
+			</vbox>
+		    </tabpanel>
+		</tabpanels>
+	    </tabbox>
+	    <spacer width="5" flex="0"/>
+	</hbox>
+	<spacer height="5" flex="0"/>
+    </vbox>
+</window>

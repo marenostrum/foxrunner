@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+
+<!DOCTYPE window SYSTEM "chrome://foxrunner/locale/foxrunner.dtd">
+
+<dialog xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  id="variableselector"
+  title="&SelectVariables;"
+  ondialogaccept="return onOK();"
+  onload="onLoad();"
+  persist="screenX screenY width height">
+
+    <script>
+	<![CDATA[
+	    function onLoad() {
+		document.getElementById("preview").value = window.arguments[0].inn.preview;
+		document.getElementById("foxrunner1").value = window.arguments[0].inn.foxrunner1;
+		document.getElementById("foxrunner2").value = window.arguments[0].inn.foxrunner2;
+		document.getElementById("foxrunner3").value = window.arguments[0].inn.foxrunner3;
+		document.getElementById("foxrunner4").value = window.arguments[0].inn.foxrunner4;
+		document.getElementById("foxrunner5").value = window.arguments[0].inn.foxrunner5;
+		document.getElementById("foxrunner6").value = window.arguments[0].inn.foxrunner6;
+		document.getElementById("foxrunner7").value = window.arguments[0].inn.foxrunner7;
+		document.getElementById("foxrunner8").value = window.arguments[0].inn.foxrunner8;
+		document.getElementById("foxrunner9").value = window.arguments[0].inn.foxrunner9;
+		document.getElementById("foxrunner10").value = window.arguments[0].inn.foxrunner10;
+	    }
+
+	    function onOK() {
+		window.arguments[0].out = {preview:document.getElementById("preview").value,
+		foxrunner1:document.getElementById("foxrunner1").value,
+		foxrunner2:document.getElementById("foxrunner2").value,
+		foxrunner3:document.getElementById("foxrunner3").value,
+		foxrunner4:document.getElementById("foxrunner4").value,
+		foxrunner5:document.getElementById("foxrunner5").value,
+		foxrunner6:document.getElementById("foxrunner6").value,
+		foxrunner7:document.getElementById("foxrunner7").value,
+		foxrunner8:document.getElementById("foxrunner8").value,
+		foxrunner9:document.getElementById("foxrunner9").value,
+		foxrunner10:document.getElementById("foxrunner10").value};
+		return true;
+	    }
+	]]>
+    </script>
+    <hbox width ="800" height="400" flex="0">
+	<vbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${1}"/>
+		<menulist id="foxrunner1" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${2}"/>
+		<menulist id="foxrunner2" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${3}"/>
+		<menulist id="foxrunner3" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${4}"/>
+		<menulist id="foxrunner4" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${5}"/>
+		<menulist id="foxrunner5" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${6}"/>
+		<menulist id="foxrunner6" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${7}"/>
+		<menulist id="foxrunner7" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${8}"/>
+		<menulist id="foxrunner8" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${9}"/>
+		<menulist id="foxrunner9" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="0"/>
+	    <hbox>
+		<spacer width="10" flex="1"/>
+		<label value="${10}"/>
+		<menulist id="foxrunner10" height="27">
+		    <menupopup datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT thevariable FROM variables ORDER BY thevariable</query>
+			    <action>
+				<menuitem uri="?" label="?thevariable" value="?thevariable"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menulist>
+		<spacer width="10" flex="1"/>
+	    </hbox>
+	    <spacer height="10" flex="1"/>
+	</vbox>
+	<spacer width="10" flex="0"/>
+	<vbox flex="1">
+	    <caption label="&Preview;"/>
+	    <textbox id="preview" readonly="true" multiline="true" cols="120" rows="10" wrap="off" flex="1"/>
+	</vbox>
+	<spacer width="10" flex="0"/>
+    </hbox>
+</dialog>

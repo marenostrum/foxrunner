@@ -1,0 +1,15 @@
+treechildren::-moz-tree-row(even) { background-color: #EFD24A; }
+treechildren::-moz-tree-row(odd) { background-color: #EFE7C2; }
+
+treechildren::-moz-tree-row(selected) { background-color: #DF5380; }
+treechildren::-moz-tree-row(even, selected) { background-color: #DF5380; }
+treechildren::-moz-tree-row(odd, selected) { background-color: #DF5380; }
+
+treechildren::-moz-tree-row(even) { border-color: #FFF4BF; }
+
+treechildren::-moz-tree-cell-text(even) { color: #444444; }
+treechildren::-moz-tree-cell-text(odd) { color: #444444; }
+
+treechildren::-moz-tree-cell-text(selected) { color: #ffffff; }
+treechildren::-moz-tree-cell-text(even, selected) { color: #ffffff; }
+treechildren::-moz-tree-cell-text(odd, selected) { color: #ffffff; }

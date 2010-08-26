@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="chrome://foxrunner/content/css/toolbar.css" type="text/css" ?>
+
+<!DOCTYPE overlay SYSTEM "chrome://foxrunner/locale/foxrunner.dtd">
+
+<overlay id="foxrunner-overlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+    <script type="application/x-javascript" src="chrome://foxrunner/content/scripts/functions-firstrun.js"/>
+    <script type="application/x-javascript" src="chrome://foxrunner/content/scripts/functions-interface.js"/>
+    <script type="application/x-javascript" src="chrome://foxrunner/content/scripts/functions-observer.js"/>
+
+    <window id="main-window">
+	<stringbundleset id="strbundles">
+	    <stringbundle id="foxrunnerstrings" src="chrome://foxrunner/locale/strings.properties"/>
+	</stringbundleset>
+    </window>
+
+    <broadcasterset id="mainBroadcasterSet">
+	<broadcaster id="viewFoxRunner" label="&FoxRunnerTitle;" autoCheck="false" type="checkbox" group="sidebar" sidebarurl="chrome://foxrunner/content/sidebar.xul" sidebartitle="&FoxRunnerTitle;" oncommand="toggleSidebar('viewFoxRunner');" />
+    </broadcasterset>
+
+    <toolbarpalette id="BrowserToolbarPalette">
+	    <toolbarbutton id="foxrunnerbutton-1" label="&FoxRunnerTitle;" tooltiptext="&FoxRunnerTitle;" oncommand="toggleSidebar('viewFoxRunner');" class="toolbarbutton-1 chromeclass-toolbar-additional foxrunnerbutton"/>
+    </toolbarpalette>
+
+    <statusbar id="status-bar">
+	<statusbarpanel id="foxrunnerstatusbar" tooltiptext="&FoxRunnerTitle;">
+	    <textbox id="foxrunnertoolbarcommand" type="search" searchbutton="true" image="chrome://foxrunner/content/images/run_small.png" label="&FoxRunnerTitle;" tooltiptext="&FoxRunnerTitle;" oncommand="foxrunnerInterface.runIt('toolbarcommand','');">
+		<hbox>
+		    <image id="foxrunnerstatusbarhide" src="chrome://foxrunner/content/images/delete_small.png" onclick="foxrunnerInterface.toggleToolbar();" tooltiptext="&Hide;" /> 
+		    <image id="foxrunnerstatusimage" label="&Preferences;" src="chrome://foxrunner/content/images/settings_small.png" onclick="window.openDialog('chrome://foxrunner/content/options.xul', 'foxrunner-prefs', 'chrome,centerscreen,alwaysRaised');"/>
+		    <spacer width="3" flex="0"/>
+		</hbox>
+	    </textbox>
+	</statusbarpanel>
+	<statusbarpanel id="foxrunnerstatusbar2" insertafter="foxrunnerstatusbar">
+	    <image id="foxrunnerstatusbar2img" src="chrome://foxrunner/content/images/run_small.png" onclick="foxrunnerInterface.toggleToolbar();" tooltiptext="&FoxRunnerTitle;" /> 
+	</statusbarpanel>
+    </statusbar>
+
+    <popup id="contentAreaContextMenu">
+	<menu id="foxrunnercontextmenu" label="&FoxRunnerTitle;" class="menu-iconic" image="chrome://foxrunner/content/images/run_small.png">
+	    <menupopup id="foxrunnercontextmenupopup" onpopupshowing="foxrunnerInterface.showHideContextMenus();">
+		<menuitem id="foxrunner-run-command-custom" label="&RunCustom;" class="menuitem-iconic" image="chrome://foxrunner/content/images/run_small.png" oncommand="foxrunnerInterface.runIt('customcommand','');"/>
+		<menuseparator id="foxrunner-run-command-separator"/>
+		<menu id="foxrunner-run-command" label="&Commands;" class="menu-iconic" image="chrome://foxrunner/content/images/run_small.png">
+		    <menupopup id="foxrunner-run-command-selected" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT commandstring FROM commands ORDER BY commandstring</query>
+			    <action>
+				<menuitem uri="?" label="?commandstring" value="?commandstring" class="menuitem-iconic" image="chrome://foxrunner/content/images/run_small.png" oncommand="foxrunnerInterface.runIt('commands',value);"/>
+			    </action>
+			</template>   
+		    </menupopup>
+		</menu>
+		<menu id="foxrunner-run-script" label="&Scripts;" class="menu-iconic" image="chrome://foxrunner/content/images/script_small.png">
+		    <menupopup id="foxrunner-run-script-selected" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT scripttitle FROM scripts ORDER BY scripttitle</query>
+			    <action>
+				<menuitem uri="?" label="?scripttitle" value="?scripttitle" class="menuitem-iconic" image="chrome://foxrunner/content/images/script_small.png" oncommand="foxrunnerInterface.runIt('scripts',value);"/>
+			    </action>
+			</template>   
+		    </menupopup>
+		</menu>
+		<menu id="foxrunner-run-command-history" label="&CommandHistory;" class="menu-iconic" image="chrome://foxrunner/content/images/history_small.png">
+		    <menupopup id="foxrunner-run-command-history-selected" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT rowid,commandstring FROM commandhistory ORDER BY rowid DESC</query>
+			    <action>
+			    <menuitem uri="?" label="?commandstring" value="?commandstring" class="menuitem-iconic" image="chrome://foxrunner/content/images/run_small.png" oncommand="foxrunnerInterface.runIt('commandhistory',value);"/>
+			    </action>
+			</template>
+		    </menupopup>
+		</menu>
+		<menuseparator id="foxrunner-add-selected-site-separator"/>
+		<menuitem id="foxrunner-add-site" label="&AddSiteWhitelist;" class="menuitem-iconic" image="chrome://foxrunner/content/images/allow_small.png" oncommand="foxrunnerInterface.addSelectedText('site');"/>
+		<menuitem id="foxrunner-run-selected-text" label="&RunSelectedText;" class="menuitem-iconic" image="chrome://foxrunner/content/images/run_small.png" oncommand="foxrunnerInterface.runIt('selectedtext','');"/>
+		<menu id="foxrunner-run-script-single-variable" label="&SendSelectedtoScript;" class="menu-iconic" image="chrome://foxrunner/content/images/script_small.png">
+		    <menupopup id="foxrunner-run-script-selected-single-variable" datasources="profile:foxrunner.sqlite" ref="*" querytype="storage">
+			<template>
+			    <query>SELECT scripttitle FROM scripts WHERE variablesoption = 'singlevariable' ORDER BY scripttitle</query>
+			    <action>
+				<menuitem uri="?" label="?scripttitle" value="?scripttitle" class="menuitem-iconic" image="chrome://foxrunner/content/images/script_small.png" oncommand="foxrunnerInterface.runIt('singlevariable',value);"/>
+			    </action>
+			</template>   
+		    </menupopup>
+		</menu>
+		<menuseparator id="foxrunner-add-selected-separator"/>
+		<menuitem id="foxrunner-add-selected-command" label="&AddSelectedTextAsCommand;" class="menuitem-iconic" image="chrome://foxrunner/content/images/add_small.png" oncommand="foxrunnerInterface.addSelectedText('command');"/>
+		<menuitem id="foxrunner-add-selected-script" label="&AddSelectedTextAsScript;" class="menuitem-iconic" image="chrome://foxrunner/content/images/add_small.png" oncommand="foxrunnerInterface.addSelectedText('script');"/>
+		<menuitem id="foxrunner-add-selected-variable" label="&AddSelectedTextAsVariable;" class="menuitem-iconic" image="chrome://foxrunner/content/images/add_small.png" oncommand="foxrunnerInterface.addSelectedText('variable');"/>
+		<menuseparator id="foxrunner-sidebar-separator"/>
+		<menuitem id="foxrunner-toggle-sidebar" label="&Sidebar;" class="menuitem-iconic" image="chrome://foxrunner/content/images/settings_small.png" oncommand="toggleSidebar('viewFoxRunner');"/>
+	    </menupopup>
+	</menu>
+    </popup>
+</overlay>

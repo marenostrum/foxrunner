@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+    <Description about="urn:mozilla:install-manifest">
+	<em:id>foxrunner@lovinglinux.megabyet.net</em:id>
+	<em:version>1.0.7</em:version>
+	<em:type>2</em:type>
+	<em:optionsURL>chrome://foxrunner/content/options.xul</em:optionsURL>
+	<em:name>FoxRunner</em:name>
+	<em:description>Run shell commmands and scripts from Firefox</em:description>
+	<em:creator>lovinglinux</em:creator>
+	<em:contributor>Snow Icon set by IconBlock</em:contributor>
+	<em:homepageURL>http://foxrunner-extension.blogspot.com</em:homepageURL>
+	<em:iconURL>chrome://foxrunner/content/images/run_large.png</em:iconURL>
+	<em:targetApplication>
+	    <Description>
+		<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+		<em:minVersion>3.5</em:minVersion>
+		<em:maxVersion>4.0b5pre</em:maxVersion>
+	    </Description>
+	</em:targetApplication>
+	<em:targetPlatform>Linux</em:targetPlatform>
+    </Description>
+</RDF>

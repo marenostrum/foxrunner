@@ -1,0 +1,6 @@
+content foxrunner chrome/content/
+locale foxrunner en-US chrome/locale/en-US/
+locale foxrunner pt-BR chrome/locale/pt-BR/
+
+overlay chrome://browser/content/browser.xul chrome://foxrunner/content/overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://foxrunner/content/css/toolbar.css

@@ -1,0 +1,22 @@
+#commands treechildren {background-color: #000000;}
+#commandhistory treechildren {background-color: #000000;}
+#scripts treechildren {background-color: #000000;}
+#blacklist treechildren {background-color: #000000;}
+#whitelist treechildren {background-color: #000000;}
+#variables treechildren {background-color: #000000;}
+
+treechildren::-moz-tree-row(even) { background-color: #000000; }
+treechildren::-moz-tree-row(odd) { background-color: #111111; }
+
+treechildren::-moz-tree-row(selected) { background-color: #000000; }
+treechildren::-moz-tree-row(even, selected) { background-color: #000000; }
+treechildren::-moz-tree-row(odd, selected) { background-color: #000000; }
+
+treechildren::-moz-tree-row(even) { border-color: #000000; }
+
+treechildren::-moz-tree-cell-text(even) { color: #cccccc; }
+treechildren::-moz-tree-cell-text(odd) { color: #cccccc; }
+
+treechildren::-moz-tree-cell-text(selected) { color: #18F018; }
+treechildren::-moz-tree-cell-text(even, selected) { color: #18F018; }
+treechildren::-moz-tree-cell-text(odd, selected) { color: #18F018; }

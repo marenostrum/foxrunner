@@ -1,0 +1,80 @@
+<!ENTITY Add "Add">
+<!ENTITY Address "URL">
+<!ENTITY AddBlacklistedKeyword "Add Blocked Keyword">
+<!ENTITY AddCommand "Add Command">
+<!ENTITY AddWhitelistedAddress "Add Allowed Domain">
+<!ENTITY AddScript "Add Script">
+<!ENTITY AddSelectedTextAsCommand "Save text as command">
+<!ENTITY AddSelectedTextAsScript "Save text as script">
+<!ENTITY AddSelectedTextAsVariable "Save text as variable">
+<!ENTITY AddSiteWhitelist "Allow this site">
+<!ENTITY AddVariable "Add Variable">
+<!ENTITY Agreement "You must be very cautious when running commands from sources that you don't trust and must fully understand each command function. Running commands without comprehending them, even if they are from trustful sources, can lead to data loss, system corruption and security leaks.">
+<!ENTITY AgreementOn "Type YES if you understand and agree:">
+<!ENTITY BlacklistedKeywords "Blocked Keywords">
+<!ENTITY BlacklistOn "Block dangerous commands">
+<!ENTITY Clear "Delete All">
+<!ENTITY ClearHistory "Clear command history on exit">
+<!ENTITY Confirmweb "Prompt for confirmation when running commands from web sites">
+<!ENTITY Code "Code">
+<!ENTITY Confirmlocal "Prompt for confirmation when running commands from database">
+<!ENTITY Command "Command">
+<!ENTITY Commands "Commands">
+<!ENTITY CommandSave "Save Command">
+<!ENTITY CommandHistory "History">
+<!ENTITY Delete "Delete">
+<!ENTITY Edit "Edit">
+<!ENTITY Export "Export">
+<!ENTITY FileName "File name">
+<!ENTITY FoxRunnerPreferences "FoxRunner Preferences">
+<!ENTITY FoxRunnerTitle "FoxRunner">
+<!ENTITY FoxRunnerAgreement "FoxRunner Warning">
+<!ENTITY HideStatusBar "Hide statusbar command box">
+<!ENTITY Hide "Hide">
+<!ENTITY Import "Import">
+<!ENTITY KeepTerminal "Keep terminal open after executing commands">
+<!ENTITY Keyword "Keyword">
+<!ENTITY KillSudo "Revoke root permission after running sudo commands">
+<!ENTITY NoVariable "No variable">
+<!ENTITY MultipleVariables "Mutiple variables">
+<!ENTITY No "No">
+<!ENTITY Permissions "Permissions">
+<!ENTITY Preferences "Preferences">
+<!ENTITY Preview "Preview">
+<!ENTITY Run "Run">
+<!ENTITY RunCustom "Run">
+<!ENTITY RunInTerminal "Run in terminal">
+<!ENTITY RunSelectedText "Run selected command">
+<!ENTITY SaveHistory "Save command history">
+<!ENTITY ScriptOptions "Script Options">
+<!ENTITY Scripts "Scripts">
+<!ENTITY SelectFile "Select File">
+<!ENTITY SelectVariables "Variables">
+<!ENTITY SendSelectedtoScript "Send text to script">
+<!ENTITY Sidebar "Sidebar">
+<!ENTITY SidebarWidth "Sidebar width">
+<!ENTITY SingleVariable "Single variable">
+<!ENTITY Style "Style">
+<!ENTITY Terminal "Terminal">
+<!ENTITY UseVariables "Use variables">
+<!ENTITY Variable "Variable">
+<!ENTITY Variables "Variables">
+<!ENTITY WhitelistedDomains "Allowed Domains">
+<!ENTITY WhitelistOn "Block untrusted web sites">
+<!ENTITY Yes "Yes">
+<!ENTITY Blue "Blue">
+<!ENTITY Green "Green">
+<!ENTITY Yellow "Yellow">
+<!ENTITY Orange "Orange">
+<!ENTITY Purple "Purple">
+<!ENTITY Turquoise "Turquoise">
+<!ENTITY LightGrey "LightGrey">
+<!ENTITY DarkGrey "DarkGrey">
+<!ENTITY LightBrown "LightBrown">
+<!ENTITY BlackGreen "BlackGreen">
+<!ENTITY Carbon "Carbon">
+<!ENTITY InfoWhitelist "If you select this option, then whenever you select a text from a web site and try to run it as command, send it to a script as variable or save it in the database, the action will be blocked until you add the web site address to the allow list. Deselecting this option will allow you from using selected texts from any web site.">
+<!ENTITY InfoBlacklist "If you select this option, then whenever you try to run a command, send a variable to a script or add new entries to the database, the action will be blocked if the entry matches one of the keywords contained in the blocklist database. Deselecting this option will allow any action to be executed.">
+<!ENTITY InfoConfirmWeb "If you select this option, then whenever you select a text from a web site and try to run it as command, send it to a script or save it in the database, you will be prompted for confirmation and for terminal options. Deselecting this option will allow any action to be performed imediately, if not blocked by other settings, and all commands will be executed in a terminal.">
+<!ENTITY InfoConfirmLocal "If you select this option, then whenever you try to run a saved command, send a variable from the database to a script or add a new entry to the database, you will be prompted for confirmation and for terminal options. Deselecting this option will allow any action to be performed imediately, if not blocked by other settings, and all commands will be executed in a terminal.">
+<!ENTITY InfoKillSudo "If you select this option, then root permissions will be revoked after executing a sudo command, forcing you to enter your password every time you run sudo commands. Deselecting this option will make the extension obey the permissons of your system.">
