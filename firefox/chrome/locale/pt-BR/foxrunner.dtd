@@ -30,7 +30,6 @@
 <!ENTITY FoxRunnerTitle "FoxRunner">
 <!ENTITY FoxRunnerAgreement "Alerta FoxRunner">
 <!ENTITY Hide "Esconder">
-<!ENTITY HideStatusBar "Esconder barra de comando da barra de status">
 <!ENTITY Import "Importar">
 <!ENTITY KeepTerminal "Manter terminal aberto após execução de comandos">
 <!ENTITY Keyword "Palavra-chave">

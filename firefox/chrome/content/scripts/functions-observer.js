@@ -5,29 +5,13 @@ const FoxRunnerObserver =
 
     {
 	//check if preferences changed
-	if (topic == "nsPref:changed" && (prefName == "extensions.foxrunner.style"
-		      || prefName == "extensions.foxrunner.hidestatusbar"))
+	if (topic == "nsPref:changed" && (prefName == "extensions.foxrunner.style"))
 	{
 
 	    //access preferences interface
 	    this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
 		    .getService(Components.interfaces.nsIPrefService)
 		    .getBranch("extensions.foxrunner.");
-
-	    if(prefName == "extensions.foxrunner.hidestatusbar"){//match style preferences change
-
-		//get preference
-		var hidebar = this.prefs.getBoolPref("hidestatusbar");
-
-		if(hidebar == true){
-		    document.getElementById("foxrunnerstatusbar").hidden = true;
-		    document.getElementById("foxrunnerstatusbar2img").hidden = false;
-		}
-		else{
-		    document.getElementById("foxrunnerstatusbar").hidden = false;
-		    document.getElementById("foxrunnerstatusbar2img").hidden = true;
-		}
-	    }
 
 	    if(prefName == "extensions.foxrunner.style"){//match style preferences change
 
@@ -91,12 +75,10 @@ var registerFoxRunnerObserver = {//observer registering functions
 
 	if (aEvent == "register"){//register observers
 	    FoxRunnerPrefService.addObserver("extensions.foxrunner.style", FoxRunnerObserver, false);
-	    FoxRunnerPrefService.addObserver("extensions.foxrunner.hidestatusbar", FoxRunnerObserver, false);
 	}
 
 	if (aEvent == "unregister"){//unregister observers
 	     FoxRunnerPrefService.removeObserver("extensions.foxrunner.style", FoxRunnerObserver);
-	     FoxRunnerPrefService.removeObserver("extensions.foxrunner.hidestatusbar", FoxRunnerObserver);
 	}
     }
 };

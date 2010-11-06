@@ -1003,7 +1003,7 @@ var foxrunnerSidebar = {
 					var process = Components.classes['@mozilla.org/process/util;1']
 						.createInstance(Components.interfaces.nsIProcess);
 					process.init(terminal);
-					var arguments = ["-e",tempscript.path];
+					var arguments = ["-e","'"+tempscript.path+"'"];
 					process.run(false, arguments, arguments.length);
 
 				    }
@@ -1058,7 +1058,7 @@ var foxrunnerSidebar = {
 			    var process = Components.classes['@mozilla.org/process/util;1']
 				    .createInstance(Components.interfaces.nsIProcess);
 			    process.init(terminal);
-			    var arguments = ["-e",tempscript.path];
+			    var arguments = ["-e","'"+tempscript.path+"'"];
 			    process.run(false, arguments, arguments.length);
 
 			    var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]  
@@ -1177,7 +1177,7 @@ var foxrunnerSidebar = {
 					    var process = Components.classes['@mozilla.org/process/util;1']
 						    .createInstance(Components.interfaces.nsIProcess);
 					    process.init(terminal);
-					    var arguments = ["-e",tempscript.path];
+					    var arguments = ["-e","'"+tempscript.path+"'"];
 					    process.run(false, arguments, arguments.length);
 
 					}
@@ -1249,7 +1249,7 @@ var foxrunnerSidebar = {
 					var process = Components.classes['@mozilla.org/process/util;1']
 						.createInstance(Components.interfaces.nsIProcess);
 					process.init(terminal);
-					var arguments = ["-e",tempscript.path];
+					var arguments = ["-e","'"+tempscript.path+"'"];
 					process.run(false, arguments, arguments.length);
 
 				    }
@@ -1351,7 +1351,7 @@ var foxrunnerSidebar = {
 					var process = Components.classes['@mozilla.org/process/util;1']
 						.createInstance(Components.interfaces.nsIProcess);
 					process.init(terminal);
-					var arguments = ["-e",tempscript.path];
+					var arguments = ["-e","'"+tempscript.path+"'"];
 					process.run(false, arguments, arguments.length);
 
 				    }
@@ -1423,7 +1423,7 @@ var foxrunnerSidebar = {
 				    var process = Components.classes['@mozilla.org/process/util;1']
 					    .createInstance(Components.interfaces.nsIProcess);
 				    process.init(terminal);
-				    var arguments = ["-e",tempscript.path];
+				    var arguments = ["-e","'"+tempscript.path+"'"];
 				    process.run(false, arguments, arguments.length);
 
 				}

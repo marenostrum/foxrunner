@@ -29,7 +29,6 @@
 <!ENTITY FoxRunnerPreferences "FoxRunner Preferences">
 <!ENTITY FoxRunnerTitle "FoxRunner">
 <!ENTITY FoxRunnerAgreement "FoxRunner Warning">
-<!ENTITY HideStatusBar "Hide statusbar command box">
 <!ENTITY Hide "Hide">
 <!ENTITY Import "Import">
 <!ENTITY KeepTerminal "Keep terminal open after executing commands">

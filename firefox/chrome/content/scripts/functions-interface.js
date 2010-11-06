@@ -260,49 +260,6 @@ var foxrunnerInterface = {
 	}
     },
 
-    resetToolbar: function() {//clear statusbar command bar
-
-	//clear statusbar command bar
-	document.getElementById("foxrunnertoolbarcommand").value = "";
-    },
-
-    toggleToolbarOnLoad: function() {//clear statusbar command bar
-
-	this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
-		.getService(Components.interfaces.nsIPrefService)
-		.getBranch("extensions.foxrunner.");
-
-	//get preference
-	var hidebar = this.prefs.getBoolPref("hidestatusbar");
-
-	if(hidebar == true){
-
-	    document.getElementById("foxrunnerstatusbar").hidden = true;
-	    document.getElementById("foxrunnerstatusbar2img").hidden = false;
-	}
-	else{
-
-	    document.getElementById("foxrunnerstatusbar").hidden = false;
-	    document.getElementById("foxrunnerstatusbar2img").hidden = true;
-	}
-    },
-
-    toggleToolbar: function() {//clear statusbar command bar
-
-	this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
-		.getService(Components.interfaces.nsIPrefService)
-		.getBranch("extensions.foxrunner.");
-
-	var hide = this.prefs.getBoolPref("hidestatusbar");
-
-	if(hide == true){
-	    this.prefs.setBoolPref("hidestatusbar", false);
-	}
-	else{
-	    this.prefs.setBoolPref("hidestatusbar", true);
-	}
-    },
-
     runIt: function (aTree,aText) {
 
 	this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
@@ -394,11 +351,6 @@ var foxrunnerInterface = {
 	if (aTree == "customcommand"){
 
 	    var command = "";
-	}
-
-	if (aTree == "toolbarcommand"){
-
-	    var command = document.getElementById('foxrunnertoolbarcommand').value;
 	}
 
 	if (aTree == "commands"){
@@ -586,7 +538,7 @@ var foxrunnerInterface = {
 				var process = Components.classes['@mozilla.org/process/util;1']
 					.createInstance(Components.interfaces.nsIProcess);
 				process.init(terminal);
-				var arguments = ["-e",tempscript.path];
+				var arguments = ["-e","'"+tempscript.path+"'"];
 				process.run(false, arguments, arguments.length);
 
 			    }
@@ -641,7 +593,7 @@ var foxrunnerInterface = {
 		    var process = Components.classes['@mozilla.org/process/util;1']
 			    .createInstance(Components.interfaces.nsIProcess);
 		    process.init(terminal);
-		    var arguments = ["-e",tempscript.path];
+		    var arguments = ["-e","'"+tempscript.path+"'"];
 		    process.run(false, arguments, arguments.length);
 
 		    var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]  
@@ -721,7 +673,7 @@ var foxrunnerInterface = {
 			    var process = Components.classes['@mozilla.org/process/util;1']
 				    .createInstance(Components.interfaces.nsIProcess);
 			    process.init(terminal);
-			    var arguments = ["-e",tempscript.path];
+			    var arguments = ["-e","'"+tempscript.path+"'"];
 			    process.run(false, arguments, arguments.length);
 
 			}
@@ -748,149 +700,6 @@ var foxrunnerInterface = {
 			    foxrunnerInterface.rebuildTrees('commandhistory');
 			}
 		    }
-		}
-	    }
-
-	    //custom command code
-	    if (aTree == "toolbarcommand" && blocked !== true && command !== "" && command !== " "){
-
-		var thirdline = command;
-
-		if (confirmlocal == true){
-
-		    var strbundle = document.getElementById("foxrunnerstrings");
-		    var params = {inn:{userinput:command,terminaloption:"yes"}, out:null};
-		    window.openDialog("chrome://foxrunner/content/prompt-command.xul", "",
-			"chrome, dialog, modal, resizable=yes", params).focus();
-
-		    if (params.out && !params.out.userinput == ""){
-
-			var command = params.out.userinput;
-			var useterminal = params.out.terminaloption;
-			var thirdline = command;
-
-			if (blacklist == true){
-
-			    var statement = mDBConn.createStatement("SELECT * FROM blacklist");
-			    mDBConn.beginTransaction();
-			    while (statement.executeStep()) {
-
-				let blacklisted = statement.row.blacklisted;
-				blacklisted = blacklisted.replace(/\*/g,".*");
-				blacklisted = blacklisted.replace(/\.\.\*/g,".*");
-				if (command.match(blacklisted)) {
-				    var blocked = true;
-				}
-			    }
-			    mDBConn.commitTransaction();
-			    statement.reset();
-			}
-
-			if (blocked !== true) {
-
-			    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
-				    .createInstance(Components.interfaces.nsIFileOutputStream);
-
-			    foStream.init(tempscript, 0x02 | 0x10 , 0777, 0);
-
-			    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-				    .createInstance(Components.interfaces.nsIConverterOutputStream);
-			    converter.init(foStream, "UTF-8", 0, 0);
-			    converter.writeString(firstline);
-			    converter.writeString(newline);
-			    converter.writeString(thirdline);
-			    if (killsudo == true && thirdline.match(/sudo/)){
-				converter.writeString(newline);
-				converter.writeString(sudoline);
-			    }
-			    if (useterminal == "yes" && keepterminal == true){
-				converter.writeString(newline);
-				converter.writeString(endline);
-			    }
-			    converter.close();
-
-			    if ( useterminal == "yes" ){
-
-				var process = Components.classes['@mozilla.org/process/util;1']
-					.createInstance(Components.interfaces.nsIProcess);
-				process.init(terminal);
-				var arguments = ["-e",tempscript.path];
-				process.run(false, arguments, arguments.length);
-
-			    }
-			    else {
-
-				var process = Components.classes['@mozilla.org/process/util;1']
-					.createInstance(Components.interfaces.nsIProcess);
-				process.init(tempscript);
-				var arguments = [];
-				process.run(false, arguments, arguments.length);
-			    }
-
-			    var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]  
-					.getService(Components.interfaces.nsIPrivateBrowsingService);  
-			    var inPrivateBrowsingMode = pbs.privateBrowsingEnabled;  
-
-			    if (savehistory == true && !inPrivateBrowsingMode){
-
-				var statement = mDBConn.createStatement("INSERT INTO commandhistory (commandstring) VALUES (:commandstring_value)");
-				statement.params.commandstring_value = thirdline;
-				statement.executeStep();
-				statement.reset();
-
-				foxrunnerInterface.rebuildTrees('commandhistory');
-			    }
-
-			    //clear statusbar command bar
-			    document.getElementById("foxrunnertoolbarcommand").value = "";
-			}
-		    }
-		}
-		else{
-
-		    var foStream = Components.classes["@mozilla.org/network/file-output-stream;1"]
-			    .createInstance(Components.interfaces.nsIFileOutputStream);
-
-		    foStream.init(tempscript, 0x02 | 0x10 , 0777, 0);
-
-		    var converter = Components.classes["@mozilla.org/intl/converter-output-stream;1"]
-			    .createInstance(Components.interfaces.nsIConverterOutputStream);
-		    converter.init(foStream, "UTF-8", 0, 0);
-		    converter.writeString(firstline);
-		    converter.writeString(newline);
-		    converter.writeString(thirdline);
-		    if (killsudo == true && thirdline.match(/sudo/)){
-			converter.writeString(newline);
-			converter.writeString(sudoline);
-		    }
-		    if (keepterminal == true){
-			converter.writeString(newline);
-			converter.writeString(endline);
-		    }
-		    converter.close();
-
-		    var process = Components.classes['@mozilla.org/process/util;1']
-			    .createInstance(Components.interfaces.nsIProcess);
-		    process.init(terminal);
-		    var arguments = ["-e",tempscript.path];
-		    process.run(false, arguments, arguments.length);
-
-		    var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]  
-				.getService(Components.interfaces.nsIPrivateBrowsingService);  
-		    var inPrivateBrowsingMode = pbs.privateBrowsingEnabled;  
-
-		    if (savehistory == true && !inPrivateBrowsingMode){
-
-			var statement = mDBConn.createStatement("INSERT INTO commandhistory (commandstring) VALUES (:commandstring_value)");
-			statement.params.commandstring_value = thirdline;
-			statement.executeStep();
-			statement.reset();
-
-			foxrunnerInterface.rebuildTrees('commandhistory');
-		    }
-
-		    //clear statusbar command bar
-		    document.getElementById("foxrunnertoolbarcommand").value = "";
 		}
 	    }
 
@@ -993,7 +802,7 @@ var foxrunnerInterface = {
 				    var process = Components.classes['@mozilla.org/process/util;1']
 					    .createInstance(Components.interfaces.nsIProcess);
 				    process.init(terminal);
-				    var arguments = ["-e",tempscript.path];
+				    var arguments = ["-e","'"+tempscript.path+"'"];
 				    process.run(false, arguments, arguments.length);
 
 				}
@@ -1065,7 +874,7 @@ var foxrunnerInterface = {
 				var process = Components.classes['@mozilla.org/process/util;1']
 					.createInstance(Components.interfaces.nsIProcess);
 				process.init(terminal);
-				var arguments = ["-e",tempscript.path];
+				var arguments = ["-e","'"+tempscript.path+"'"];
 				process.run(false, arguments, arguments.length);
 
 			    }
@@ -1167,7 +976,7 @@ var foxrunnerInterface = {
 				var process = Components.classes['@mozilla.org/process/util;1']
 					.createInstance(Components.interfaces.nsIProcess);
 				process.init(terminal);
-				var arguments = ["-e",tempscript.path];
+				var arguments = ["-e","'"+tempscript.path+"'"];
 				process.run(false, arguments, arguments.length);
 
 			    }
@@ -1239,7 +1048,7 @@ var foxrunnerInterface = {
 			    var process = Components.classes['@mozilla.org/process/util;1']
 				    .createInstance(Components.interfaces.nsIProcess);
 			    process.init(terminal);
-			    var arguments = ["-e",tempscript.path];
+			    var arguments = ["-e","'"+tempscript.path+"'"];
 			    process.run(false, arguments, arguments.length);
 
 			}
@@ -1319,7 +1128,7 @@ var foxrunnerInterface = {
 				var process = Components.classes['@mozilla.org/process/util;1']
 					.createInstance(Components.interfaces.nsIProcess);
 				process.init(terminal);
-				var arguments = ["-e",tempscript.path];
+				var arguments = ["-e","'"+tempscript.path+"'"];
 				process.run(false, arguments, arguments.length);
 
 			    }
@@ -1374,7 +1183,7 @@ var foxrunnerInterface = {
 		    var process = Components.classes['@mozilla.org/process/util;1']
 			    .createInstance(Components.interfaces.nsIProcess);
 		    process.init(terminal);
-		    var arguments = ["-e",tempscript.path];
+		    var arguments = ["-e","'"+tempscript.path+"'"];
 		    process.run(false, arguments, arguments.length);
 
 		    var pbs = Components.classes["@mozilla.org/privatebrowsing;1"]  
@@ -1465,7 +1274,7 @@ var foxrunnerInterface = {
 				var process = Components.classes['@mozilla.org/process/util;1']
 					.createInstance(Components.interfaces.nsIProcess);
 				process.init(terminal);
-				var arguments = ["-e",tempscript.path];
+				var arguments = ["-e","'"+tempscript.path+"'"];
 				process.run(false, arguments, arguments.length);
 
 			    }
@@ -1540,7 +1349,7 @@ var foxrunnerInterface = {
 			    var process = Components.classes['@mozilla.org/process/util;1']
 				    .createInstance(Components.interfaces.nsIProcess);
 			    process.init(terminal);
-			    var arguments = ["-e",tempscript.path];
+			    var arguments = ["-e","'"+tempscript.path+"'"];
 			    process.run(false, arguments, arguments.length);
 
 			}
@@ -1844,6 +1653,5 @@ var foxrunnerInterface = {
 	}
     }
 };
-window.addEventListener("load", function(e) { foxrunnerInterface.toggleToolbarOnLoad(); }, false);
 window.addEventListener("unload", function(e) { foxrunnerInterface.cleanUpHistory(); }, false);
 window.addEventListener("unload", function(e) { foxrunnerInterface.cleanUpTempScripts(); }, false);

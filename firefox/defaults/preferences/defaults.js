@@ -9,5 +9,4 @@ pref("extensions.foxrunner.sidebarwidth", "350");
 pref("extensions.foxrunner.savehistory", true);
 pref("extensions.foxrunner.clearhistory", true);
 pref("extensions.foxrunner.keepterminal", true);
-pref("extensions.foxrunner.hidestatusbar", false);
 pref("extensions.foxrunner.killsudo", true);

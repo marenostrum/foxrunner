@@ -24,7 +24,6 @@
 	    <preference id="pref_clearhistory" name="extensions.foxrunner.clearhistory" type="bool"/>
 	    <preference id="pref_keepterminal" name="extensions.foxrunner.keepterminal" type="bool"/>
 	    <preference id="pref_killsudo" name="extensions.foxrunner.killsudo" type="bool"/>
-	    <preference id="pref_hidestatusbar" name="extensions.foxrunner.hidestatusbar" type="bool" instantApply="true"/>
 	</preferences>
 
 	<hbox>
@@ -126,12 +125,6 @@
 		    </menulist>
 		    <label value="&SidebarWidth;: "/>
 		    <textbox preference="pref_sidebarwidth" id="sidebarwidth" size="3"/>
-		</hbox>
-		<spacer height="10" flex="0"/>
-		<hbox>
-		    <spacer width="10" flex="0"/>
-		    <checkbox label="&HideStatusBar;" preference="pref_hidestatusbar" id="hidestatusbar" size="1"/>
-		    <spacer width="10" flex="1"/>
 		</hbox>
 		<spacer height="10" flex="0"/>
 	    </vbox>

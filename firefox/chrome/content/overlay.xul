@@ -20,23 +20,8 @@
     </broadcasterset>
 
     <toolbarpalette id="BrowserToolbarPalette">
-	    <toolbarbutton id="foxrunnerbutton-1" label="&FoxRunnerTitle;" tooltiptext="&FoxRunnerTitle;" oncommand="toggleSidebar('viewFoxRunner');" class="toolbarbutton-1 chromeclass-toolbar-additional foxrunnerbutton"/>
+	<toolbarbutton id="foxrunnerbutton-1" label="&FoxRunnerTitle;" tooltiptext="&FoxRunnerTitle;" oncommand="toggleSidebar('viewFoxRunner');" class="toolbarbutton-1 chromeclass-toolbar-additional foxrunnerbutton"/>
     </toolbarpalette>
-
-    <statusbar id="status-bar">
-	<statusbarpanel id="foxrunnerstatusbar" tooltiptext="&FoxRunnerTitle;">
-	    <textbox id="foxrunnertoolbarcommand" type="search" searchbutton="true" image="chrome://foxrunner/content/images/run_small.png" label="&FoxRunnerTitle;" tooltiptext="&FoxRunnerTitle;" oncommand="foxrunnerInterface.runIt('toolbarcommand','');">
-		<hbox>
-		    <image id="foxrunnerstatusbarhide" src="chrome://foxrunner/content/images/delete_small.png" onclick="foxrunnerInterface.toggleToolbar();" tooltiptext="&Hide;" /> 
-		    <image id="foxrunnerstatusimage" label="&Preferences;" src="chrome://foxrunner/content/images/settings_small.png" onclick="window.openDialog('chrome://foxrunner/content/options.xul', 'foxrunner-prefs', 'chrome,centerscreen,alwaysRaised');"/>
-		    <spacer width="3" flex="0"/>
-		</hbox>
-	    </textbox>
-	</statusbarpanel>
-	<statusbarpanel id="foxrunnerstatusbar2" insertafter="foxrunnerstatusbar">
-	    <image id="foxrunnerstatusbar2img" src="chrome://foxrunner/content/images/run_small.png" onclick="foxrunnerInterface.toggleToolbar();" tooltiptext="&FoxRunnerTitle;" /> 
-	</statusbarpanel>
-    </statusbar>
 
     <popup id="contentAreaContextMenu">
 	<menu id="foxrunnercontextmenu" label="&FoxRunnerTitle;" class="menu-iconic" image="chrome://foxrunner/content/images/run_small.png">
